@@ -16,7 +16,7 @@ import Landing from "./pages/user/Landing";
 import HowItWorks from "./pages/user/HowItWorks";
 import MeetTheTeam from "./pages/user/MeetTheTeam";
 
-import Login from "./pages/auth/Login";
+import Login from "./pages/auth/Signin";
 import SignUp from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Policy from "./pages/auth/Policy";
@@ -24,10 +24,6 @@ import Footer from "./pages/user/components/Footer";
 import Settings from "./pages/vendor/Settings";
 import PaymentForm from "./pages/auth/Pay";
 import Faq from "./pages/user/FAQ";
-import AdminLayouts from "./layouts/AdminLayouts";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdsList from "./pages/admin/AdminAdsList";
-import UsersList from "./pages/admin/UsersList";
 import BookChef from "./pages/user/BookChef";
 
 function App() {
