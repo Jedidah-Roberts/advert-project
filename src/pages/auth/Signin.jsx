@@ -55,16 +55,16 @@ const Login = () => {
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Centered Form */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-        <div className="w-full max-w-md p-6 rounded-lg ">
-          <h2 className="text-2xl font-bold mb-6 text-center text-white">Log In</h2>
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 ">
+        <div className="w-full max-w-md p-6 rounded-lg bg-white">
+          <h2 className="text-2xl font-bold mb-6 text-center text-black">Log In</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <input
                 type="email"
                 placeholder="Email"
-                className=" text-white w-full p-2 border border-white rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                className=" text-black w-full p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-green-500"
                 {...register("email", { required: "Email address required" })}
               />
               {errors?.email && (
@@ -76,7 +76,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="w-full p-2 border text-white border-white rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-2 border text-black border-black rounded focus:outline-none focus:ring-2 focus:ring-green-500"
                 {...register("password", { required: "Password is required" })}
               />
               {errors?.password && (
@@ -85,7 +85,7 @@ const Login = () => {
             </div>
 
             <div className="text-center">
-              <Link to="/forgot-password" className="text-sm text-white hover:underline">
+              <Link to="/forgot-password" className="text-sm text-black hover:underline">
                 Forgot Password?
               </Link>
             </div>
@@ -102,7 +102,7 @@ const Login = () => {
               {isSubmitting ? "Logging in..." : "Login"}
             </button>
 
-            <p className="text-center text-sm text-white">
+            <p className="text-center text-sm text-black">
               Don't have an account?{" "}
               <Link to="/sign-up" className="text-green hover:underline">
                 Sign Up

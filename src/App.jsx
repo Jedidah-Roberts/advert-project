@@ -15,7 +15,6 @@ import UserContact from "./pages/user/UserContact";
 import Landing from "./pages/user/Landing";
 import HowItWorks from "./pages/user/HowItWorks";
 import MeetTheTeam from "./pages/user/MeetTheTeam";
-
 import Login from "./pages/auth/Signin";
 import SignUp from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
@@ -28,14 +27,6 @@ import BookChef from "./pages/user/BookChef";
 
 function App() {
   const router = createBrowserRouter([
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/sign-up",
-      element: <SignUp />,
-    },
     { path: "/adverts/:id", element: <AdDetails /> },
     {
       path: "/forgot-password",
@@ -49,6 +40,7 @@ function App() {
       path: "/privacy-policy",
       element: <Policy />,
     },
+    // vendor section
     {
       path: "/dashboard",
       element: <DashboardLayout />,
@@ -85,6 +77,7 @@ function App() {
       ],
     },
 
+    // user layouts
     {
       path: "/",
       element: <UserLayouts />,
@@ -98,6 +91,14 @@ function App() {
         {
           path: "about-us",
           element: <About />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "sign-up",
+          element: <SignUp />,
         },
         {
           path: "about-us/how-it-works",

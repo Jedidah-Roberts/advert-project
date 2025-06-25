@@ -51,17 +51,17 @@ const SignUp = () => {
       }}
     >
       <div className="w-full max-w-md p-6 rounded-lg shadow-lg bg-white">
-        <h2 className="text-2xl font-bold mb-6 text-center text-purple-700">
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">
           Sign Up
         </h2>
 
-        {/* Vendor/Buyer Toggle */}
+        
         <div className="flex justify-center mb-6 gap-4">
           <button
             type="button"
             className={`py-2 px-6 text-sm font-medium rounded transition ${
               state === "vendor"
-                ? "bg-blue-600 text-white"
+                ? "bg-green-600 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             onClick={() => setState("vendor")}
@@ -72,7 +72,7 @@ const SignUp = () => {
             type="button"
             className={`py-2 px-6 text-sm font-medium rounded transition ${
               state === "user"
-                ? "bg-blue-600 text-white"
+                ? "bg-green-600 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             onClick={() => setState("user")}
@@ -235,7 +235,7 @@ const SignUp = () => {
             className={`${
               isError
                 ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
+                : "bg-green-600 hover:bg-green-700"
             } w-full text-white p-2 rounded transition`}
           >
             {isSubmitting ? "Submitting..." : "Sign Up"}

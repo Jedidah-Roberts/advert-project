@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { apiCreateAd } from "../../services/adverts";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
-export default function AddRecipeForm({ onSubmit }) {
+export default function AddRecipeForm() {
   const navigate = useNavigate();
   const {
     register,
@@ -12,8 +13,6 @@ export default function AddRecipeForm({ onSubmit }) {
   } = useForm();
 
   const submitForm = async (data) => {
-    console.log(data);
-
     const payload = new FormData();
     payload.append("image", data.image[0]);
     payload.append("recipeName", data.recipeName);
@@ -27,93 +26,81 @@ export default function AddRecipeForm({ onSubmit }) {
     payload.append("directions", data.directions);
 
     try {
-      const res = await apiCreateAd(payload);
+      await apiCreateAd(payload);
       toast.success("Recipe has been added successfully!");
-      navigate("/dashboard/vendor-ads")
+      navigate("/dashboard/vendor-ads");
     } catch (error) {
       console.log(error);
+      toast.error("Failed to submit recipe.");
     }
   };
 
   return (
-    <form
+    <motion.form
       onSubmit={handleSubmit(submitForm)}
-      className="max-w-lg mx-auto p-6 bg-white shadow rounded space-y-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-3xl mx-auto p-8 bg-white rounded-2xl shadow-2xl space-y-6 font-sans"
     >
-      <h2 className="text-2xl font-bold text-center">Add a Recipe</h2>
-      <div>
-        <label className="block mb-1 font-medium">Image</label>
+      <h2 className="text-3xl font-extrabold text-center bg-gradient-to-r from-orange-500 to-pink-500 text-transparent bg-clip-text mb-2">
+        Add a New Recipe
+      </h2>
+      <p className="text-center text-gray-500 text-sm">
+        Share your unique flavors with the world.
+      </p>
+
+      {/* IMAGE UPLOAD */}
+      <Field label="Image" error={errors.image?.message}>
         <input
           type="file"
-          {...register("image", { required: "image upload is required" })}
-          className={`w-full p-2 border rounded ${
-            errors.image && "border-red-500"
-          }`}
-          placeholder="image upload is required"
+          {...register("image", { required: "Image upload is required" })}
+          className="w-full p-2 border border-gray-300 rounded-lg"
         />
-        {errors.image && (
-          <p className="text-red-500 text-sm">{errors.image.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Recipe Name</label>
+      {/* RECIPE NAME */}
+      <Field label="Recipe Name" error={errors.recipeName?.message}>
         <input
           {...register("recipeName", { required: "Recipe name is required" })}
-          className={`w-full p-2 border rounded ${
-            errors.recipeName && "border-red-500"
-          }`}
+          className="w-full p-2 border border-gray-300 rounded-lg"
           placeholder="E.g., Spicy Jollof Rice"
         />
-        {errors.recipeName && (
-          <p className="text-red-500 text-sm">{errors.recipeName.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Description</label>
+      {/* DESCRIPTION */}
+      <Field label="Description" error={errors.description?.message}>
         <textarea
           {...register("description", { required: "Description is required" })}
           rows={3}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded-lg"
           placeholder="Tell us about the dish"
         />
-        {errors.description && (
-          <p className="text-red-500 text-sm">{errors.description.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Price</label>
+      {/* PRICE */}
+      <Field label="Price" error={errors.price?.message}>
         <input
           {...register("price", { required: "Price is required" })}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded-lg"
           placeholder="e.g., $10"
         />
-        {errors.price && (
-          <p className="text-red-500 text-sm">{errors.price.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Country of Origin</label>
+      {/* COUNTRY */}
+      <Field label="Country of Origin" error={errors.countryOfOrigin?.message}>
         <input
           {...register("countryOfOrigin", { required: "Country is required" })}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded-lg"
           placeholder="e.g., Nigeria"
         />
-        {errors.countryOfOrigin && (
-          <p className="text-red-500 text-sm">
-            {errors.countryOfOrigin.message}
-          </p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Course Type</label>
+      {/* COURSE TYPE */}
+      <Field label="Course Type" error={errors.courseType?.message}>
         <select
           {...register("courseType", { required: "Course type is required" })}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded-lg"
         >
           <option value="">Select one</option>
           <option value="Appetizer">Appetizer</option>
@@ -121,207 +108,67 @@ export default function AddRecipeForm({ onSubmit }) {
           <option value="Dessert">Dessert</option>
           <option value="Snack">Snack</option>
         </select>
-        {errors.courseType && (
-          <p className="text-red-500 text-sm">{errors.courseType.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Cooking Technique</label>
+      {/* TECHNIQUE */}
+      <Field label="Cooking Technique" error={errors.cookingTechnique?.message}>
         <input
           {...register("cookingTechnique", {
             required: "Technique is required",
           })}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded-lg"
           placeholder="e.g., Grilling"
         />
-        {errors.cookingTechnique && (
-          <p className="text-red-500 text-sm">
-            {errors.cookingTechnique.message}
-          </p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Special Diet</label>
+      {/* DIET */}
+      <Field label="Special Diet">
         <input
           {...register("specialDiet")}
-          className="w-full p-2 border rounded"
-          placeholder="e.g., Vegetarian, Gluten-free"
+          className="w-full p-2 border border-gray-300 rounded-lg"
+          placeholder="e.g., Vegan, Gluten-Free"
         />
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Ingredients</label>
+      {/* INGREDIENTS */}
+      <Field label="Ingredients" error={errors.ingredient?.message}>
         <textarea
           {...register("ingredient", { required: "Ingredients are required" })}
           rows={3}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded-lg"
           placeholder="List ingredients separated by commas"
         />
-        {errors.ingredient && (
-          <p className="text-red-500 text-sm">{errors.ingredient.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div>
-        <label className="block mb-1 font-medium">Directions</label>
+      {/* DIRECTIONS */}
+      <Field label="Directions" error={errors.directions?.message}>
         <textarea
           {...register("directions", { required: "Directions are required" })}
           rows={4}
-          className="w-full p-2 border rounded"
-          placeholder="Describe the cooking steps..."
+          className="w-full p-2 border border-gray-300 rounded-lg"
+          placeholder="Step-by-step cooking instructions"
         />
-        {errors.directions && (
-          <p className="text-red-500 text-sm">{errors.directions.message}</p>
-        )}
-      </div>
+      </Field>
 
+      {/* SUBMIT */}
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+        className="w-full py-3 rounded-lg text-white font-bold bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 transition-all"
       >
         {isSubmitting ? "Submitting..." : "Add Recipe"}
       </button>
-    </form>
+    </motion.form>
   );
 }
 
-// import React, { useState } from 'react';
-
-// const CreateAd = () => {
-//   const [formData, setFormData] = useState({
-//     title: '',
-//     description: '',
-//     category: '',
-//     price: '',
-//     location: '',
-//     images: [],
-//   });
-
-//   const [status, setStatus] = useState('');
-
-//   const handleChange = (e) => {
-//     const { name, value, files } = e.target;
-
-//     if (name === 'images') {
-//       setFormData({ ...formData, images: Array.from(files) });
-//     } else {
-//       setFormData({ ...formData, [name]: value });
-//     }
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     // Normally you'd post to backend here
-//     console.log('Submitting:', formData);
-
-//     setStatus('Ad posted successfully!');
-//     setFormData({
-//       title: '',
-//       description: '',
-//       category: '',
-//       price: '',
-//       location: '',
-//       images: [],
-//     });
-
-//     // Reset file input manually if needed
-//     e.target.reset();
-//   };
-
-//   const categoryOptions = [
-//     'Course - Appetizer',
-//     'Course - Main',
-//     'Course - Dessert',
-//     'Cuisine - Nigerian',
-//     'Cuisine - Italian',
-//     'Technique - Grilling',
-//     'Special Diet - Vegan',
-//   ];
-
-//   return (
-//     <div className="p-6 max-w-2xl mx-auto bg-white rounded shadow">
-//       <h2 className="text-2xl font-bold text-orange-600 mb-4">Post a New Recipe or Cookbook</h2>
-
-//       {status && <div className="bg-green-100 text-green-800 p-2 mb-4 rounded">{status}</div>}
-
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <input
-//           type="text"
-//           name="title"
-//           placeholder="Title"
-//           value={formData.title}
-//           onChange={handleChange}
-//           required
-//           className="w-full border p-2 rounded"
-//         />
-
-//         <textarea
-//           name="description"
-//           placeholder="Description"
-//           value={formData.description}
-//           onChange={handleChange}
-//           rows={5}
-//           required
-//           className="w-full border p-2 rounded"
-//         />
-
-//         <select
-//           name="category"
-//           value={formData.category}
-//           onChange={handleChange}
-//           required
-//           className="w-full border p-2 rounded"
-//         >
-//           <option value="">-- Select Category --</option>
-//           {categoryOptions.map((opt, idx) => (
-//             <option key={idx} value={opt}>
-//               {opt}
-//             </option>
-//           ))}
-//         </select>
-
-//         <input
-//           type="number"
-//           name="price"
-//           placeholder="Price (e.g., 15)"
-//           value={formData.price}
-//           onChange={handleChange}
-//           required
-//           className="w-full border p-2 rounded"
-//         />
-
-//         <input
-//           type="text"
-//           name="location"
-//           placeholder="Location (e.g., Lagos, Nigeria)"
-//           value={formData.location}
-//           onChange={handleChange}
-//           required
-//           className="w-full border p-2 rounded"
-//         />
-
-//         <input
-//           type="file"
-//           name="images"
-//           accept="image/*"
-//           multiple
-//           onChange={handleChange}
-//           className="w-full border p-2 rounded"
-//         />
-
-//         <button
-//           type="submit"
-//           className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
-//         >
-//           Submit Ad
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default CreateAd;
+// Reusable field wrapper
+function Field({ label, error, children }) {
+  return (
+    <div>
+      <label className="block mb-1 font-medium text-gray-700">{label}</label>
+      {children}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+    </div>
+  );
+}

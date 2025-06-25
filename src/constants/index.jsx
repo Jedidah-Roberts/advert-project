@@ -1,17 +1,14 @@
-import { FormInput, HomeIcon } from "lucide-react";
-import { FcAdvertising } from "react-icons/fc";
-
+import { FormInput, HomeIcon, Megaphone } from "lucide-react";
 
 const K = {
   NAVLINKS: [
-
     {
       icon: <HomeIcon />,
       text: "OVERVIEW",
       path: "/dashboard",
     },
     {
-      icon: <FcAdvertising />,
+      icon: <Megaphone />,
       text: "FIND YOUR ADS",
       path: "/dashboard/vendor-ads",
     },
@@ -34,14 +31,6 @@ const K = {
     },
     {
       text: "RECIPE CATALOG ",
-      dropdown: true,
-      children: [
-        { text: "COUNTRY-BASED RECIPES", path: "/user-adverts" },
-        { text: "COURSE-BASED RECIPES", path: "/user-adverts" },
-        { text: "COOKING-TECHNIQUE BASED RECIPES", path: "/user-adverts" },
-        { text: "SPECIAL-DIET BASED RECIPES", path: "/user-adverts" },
-      ],
-
       path: "/user-adverts",
     },
     {
@@ -55,25 +44,6 @@ const K = {
     {
       text: "FAQ",
       path: "/faq",
-    },
-   
-
-  ],
-  ADMINLINKS: [
-    {
-      icon: <HomeIcon />,
-      text: "DASHBOARD",
-      path: "/admin/dashboard",
-    },
-    {
-      icon: <FcAdvertising />,
-      text: "FIND ALL USERS",
-      path: "/admin/users-list",
-    },
-    {
-      icon: <FormInput />,
-      text: "FIND ALL ADS",
-      path: "/admin/ad-lists",
     },
   ],
 };
