@@ -9,7 +9,6 @@ const Navbar = () => {
   return (
     <header className="bg-white/90 backdrop-blur-md shadow-md fixed top-0 left-0 w-full z-50 border-b border-gray-200 font-sans">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-       
         <Link
           to="/"
           className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-purple-700 tracking-wide"
@@ -17,7 +16,6 @@ const Navbar = () => {
           CodeFeast
         </Link>
 
-       
         <nav className="hidden md:flex items-center space-x-8">
           {K.USERLINKS.map(({ text, path, children, dropdown }) => (
             <div key={text} className="relative group">
@@ -29,10 +27,13 @@ const Navbar = () => {
                       isActive
                         ? "text-purple-700 font-bold border-purple-500"
                         : ""
+                      // this however refers to conditional/ternary operators
                     }`
                   }
                   end
+                  // this ensures that the NavLink is only active when the location matches the to path not just start with it
                 >
+                  {/* personal comment,this is a function as child pattern where a function receives an objectt and returns a classname string, isActive is a boolean built on using temperate literals, makes it a dynamic className */}
                   {text}
                 </NavLink>
                 {dropdown && (
@@ -50,6 +51,7 @@ const Navbar = () => {
                     >
                       {child.text}
                     </Link>
+                    // this is conditional rendering using the logical and operators, this returns the second condition 
                   ))}
                 </div>
               )}
@@ -57,7 +59,6 @@ const Navbar = () => {
           ))}
         </nav>
 
-        
         <div className="hidden md:flex items-center gap-3">
           <Link to="/sign-up">
             <button className="border border-amber-600 text-amber-600 hover:bg-amber-100 px-5 py-2 rounded-lg font-semibold transition-all duration-300">
@@ -77,7 +78,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        
         <button
           className="md:hidden text-gray-700"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -86,7 +86,6 @@ const Navbar = () => {
         </button>
       </div>
 
-     
       {isMobileOpen && (
         <div className="md:hidden px-6 pb-6 pt-2 space-y-4 bg-white shadow-sm">
           {K.USERLINKS.map(({ text, path, dropdown, children }) => (
