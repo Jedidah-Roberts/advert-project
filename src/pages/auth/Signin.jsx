@@ -96,7 +96,7 @@ const Login = () => {
               className={`w-full p-2 rounded text-white transition ${
                 isError
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-green-600 hover:bg-green-700"
+                  : " bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
               }`}
             >
               {isSubmitting ? "Logging in..." : "Login"}

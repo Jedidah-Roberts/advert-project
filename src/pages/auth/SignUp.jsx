@@ -59,7 +59,7 @@ const SignUp = () => {
             type="button"
             className={`py-2 px-6 text-sm font-medium rounded transition ${
               state === "vendor"
-                ? "bg-green-600 text-white"
+                ? " bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             onClick={() => setState("vendor")}
@@ -70,7 +70,7 @@ const SignUp = () => {
             type="button"
             className={`py-2 px-6 text-sm font-medium rounded transition ${
               state === "user"
-                ? "bg-green-600 text-white"
+                ? " bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             onClick={() => setState("user")}
@@ -265,7 +265,7 @@ const SignUp = () => {
             className={`${
               isError
                 ? "bg-gray-300 cursor-not-allowed"
-                : "bg-green-600 hover:bg-green-700"
+                : " bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
             } w-full text-white p-2 rounded transition`}
           >
             {isSubmitting ? "Submitting..." : "Sign Up"}
