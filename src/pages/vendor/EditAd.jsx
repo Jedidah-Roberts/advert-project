@@ -63,7 +63,18 @@ export default function EditAd() {
       <h2 className="text-2xl font-bold text-center text-orange-600">
         Edit Your Ad
       </h2>
-
+      {/* <div>
+        <label className="block mb-1 font-medium">imageUrl</label>
+        <input
+          {...register("image", { required: "image is required" })}
+          className={`w-full p-2 border rounded ${
+            errors.image && "border-red-500"
+          }`}
+        />
+        {errors.image && (
+          <p className="text-red-500 text-sm">{errors.image.message}</p>
+        )}
+      </div> */}
       <div>
         <label className="block mb-1 font-medium">Recipe Name</label>
         <input

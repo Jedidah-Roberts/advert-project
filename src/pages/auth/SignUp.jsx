@@ -27,8 +27,7 @@ const SignUp = () => {
 
     setIsSubmitting(true);
     try {
-      const res = await apiSignUp(payload);
-
+      await apiSignUp(payload);
       toast.success("User Registered Successfully");
       navigate("/login");
     } catch (error) {
@@ -55,7 +54,6 @@ const SignUp = () => {
           Sign Up
         </h2>
 
-        
         <div className="flex justify-center mb-6 gap-4">
           <button
             type="button"
@@ -127,55 +125,29 @@ const SignUp = () => {
                 </p>
               )}
             </div>
-          ) : (
-            <div>
-              <label className="block mb-1 text-sm font-medium">Country</label>
-              <select
-                className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                {...register("location")}
-              >
-                <option value="">-- Select a Country --</option>
-                <option value="Ghana">Ghana</option>
-                <option value="Nigeria">Nigeria</option>
-                <option value="Kenya">Kenya</option>
-                <option value="South Africa">South Africa</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Canada">Canada</option>
-                <option value="India">India</option>
-              </select>
-              {errors.location && (
-                <p className="text-red-500 text-sm">
-                  {errors.location.message}
-                </p>
-              )}
-            </div>
-          )}
+          ) : null}
 
-          {state === "vendor" && (
-            <div>
-              <label className="block mb-1 text-sm font-medium">Country</label>
-              <select
-                className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                {...register("location")}
-              >
-                <option value="">-- Select a Country --</option>
-                <option value="Ghana">Ghana</option>
-                <option value="Nigeria">Nigeria</option>
-                <option value="Kenya">Kenya</option>
-                <option value="South Africa">South Africa</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Canada">Canada</option>
-                <option value="India">India</option>
-              </select>
-              {errors.location && (
-                <p className="text-red-500 text-sm">
-                  {errors.location.message}
-                </p>
-              )}
-            </div>
-          )}
+          <div>
+            <label className="block mb-1 text-sm font-medium">Country</label>
+            <select
+              className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {...register("location")}
+            >
+              <option value="">-- Select a Country --</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="Kenya">Kenya</option>
+              <option value="South Africa">South Africa</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="India">India</option>
+            </select>
+            {errors.location && (
+              <p className="text-red-500 text-sm">{errors.location.message}</p>
+            )}
+          </div>
+
           <div>
             <label className="block mb-1 text-sm font-medium">Password</label>
             <input
@@ -218,12 +190,70 @@ const SignUp = () => {
             )}
           </div>
 
+          {/* Payment section for USERS ONLY */}
+          {state === "user" && (
+            <div className="border-t pt-6 space-y-4">
+              <h3 className="text-lg font-bold text-gray-800">Access Payment</h3>
+
+              <div className="bg-orange-100 border border-orange-200 p-4 rounded text-sm text-gray-800 font-medium">
+                Buyer Access Fee:{" "}
+                <span className="text-orange-600 font-bold">$5</span>
+              </div>
+
+              <div>
+                <label className="block mb-1 text-sm font-medium">Card Number</label>
+                <input
+                  type="text"
+                  placeholder="1234 5678 9012 3456"
+                  className="w-full p-2 border rounded-lg bg-gray-100"
+                  disabled
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block mb-1 text-sm font-medium">Expiry</label>
+                  <input
+                    type="text"
+                    placeholder="MM / YY"
+                    className="w-full p-2 border rounded-lg bg-gray-100"
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1 text-sm font-medium">CVC</label>
+                  <input
+                    type="text"
+                    placeholder="123"
+                    className="w-full p-2 border rounded-lg bg-gray-100"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input type="checkbox" id="agree" className="accent-orange-500" />
+                <label htmlFor="agree" className="text-sm text-gray-700">
+                  I agree to the{" "}
+                  <span className="underline cursor-pointer">
+                    terms and conditions
+                  </span>
+                </label>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => alert("Payment simulated")}
+                className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-pink-600 transition"
+              >
+                Simulate Payment
+              </button>
+            </div>
+          )}
+
           <p className="text-sm">
             By signing up, you agree to our{" "}
-            <Link
-              to="/privacy-policy"
-              className="text-blue-600 hover:underline"
-            >
+            <Link to="/privacy-policy" className="text-blue-600 hover:underline">
               Privacy Policy
             </Link>
             .

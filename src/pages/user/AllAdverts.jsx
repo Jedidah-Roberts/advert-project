@@ -22,7 +22,6 @@ const AllAdverts = () => {
           tagSet.add(item.countryOfOrigin);
           tagSet.add(item.courseType);
           tagSet.add(item.cookingTechnique);
-          
           tagSet.add(item.specialDiet);
         });
 
@@ -60,7 +59,6 @@ const AllAdverts = () => {
         Browse chef-submitted recipes by category, course, or diet.
       </p>
 
-     
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
         <input
           type="text"
@@ -83,13 +81,16 @@ const AllAdverts = () => {
         </select>
       </div>
 
-      
       {filteredRecipes.length > 0 ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredRecipes.map((recipe, index) => (
             <motion.div
               key={recipe._id}
-              onClick={() => navigate(`/adverts/${recipe._id}`)}
+              onClick={() =>
+                navigate(`/adverts/${recipe._id}`, {
+                  state: { redirectTo: `/adverts/${recipe._id}` },
+                })
+              }
               className="cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] overflow-hidden group"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -132,7 +133,9 @@ const AllAdverts = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500 text-lg">No matching recipes found.</p>
+        <p className="text-center text-gray-500 text-lg">
+          No matching recipes found.
+        </p>
       )}
     </section>
   );

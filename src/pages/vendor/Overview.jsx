@@ -31,7 +31,7 @@ const Overview = () => {
         <p className="text-gray-600 mt-1">Here’s what’s happening today.</p>
       </motion.div>
 
-      {/* Stats */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {stats.map((stat, index) => (
           <motion.div
@@ -47,11 +47,11 @@ const Overview = () => {
         ))}
       </div>
 
-      {/* Grid: Ads + Profile */}
+      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Left Column */}
+       
         <div className="md:col-span-2 space-y-6">
-          {/* Recent Ads */}
+        
           <motion.div
             className="bg-white p-5 rounded-2xl shadow"
             initial={{ opacity: 0, y: 30 }}
@@ -80,7 +80,7 @@ const Overview = () => {
             </Link>
           </motion.div>
 
-          {/* Notifications */}
+          
           <motion.div
             className="bg-white p-5 rounded-2xl shadow"
             initial={{ opacity: 0, y: 30 }}

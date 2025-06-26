@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-// import axios from '../api/axiosInstance'; // Uncomment when backend ready
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const AdsList = () => {
   const [ads, setAds] = useState([]);
@@ -13,50 +13,68 @@ const AdsList = () => {
     setAds([
       {
         id: 1,
-        title: 'Keto Vegan Cookbook',
-        vendor: 'Chef Amaka',
+        title: "Keto Vegan Cookbook",
+        vendor: "Chef Amaka",
         price: 18,
-        image: 'https://source.unsplash.com/400x300/?vegan,food',
+        image: "https://source.unsplash.com/400x300/?vegan,food",
       },
       {
         id: 2,
-        title: 'West African Jollof Recipe',
-        vendor: 'Chef Jedidah',
+        title: "West African Jollof Recipe",
+        vendor: "Chef Jedidah",
         price: 12,
-        image: 'https://source.unsplash.com/400x300/?jollof,african',
+        image: "https://source.unsplash.com/400x300/?jollof,african",
       },
     ]);
   }, []);
 
+  const handleRemove = (id) => {
+    const confirm = window.confirm("Are you sure you want to remove this ad?");
+    if (confirm) {
+      // Simulate removal
+      setAds((prev) => prev.filter((ad) => ad.id !== id));
+      alert("Ad removed successfully (mock behavior)");
+    }
+  };
+
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h2 className="text-2xl font-bold text-blue-600 mb-4">All Vendor Ads</h2>
+    <div className="p-6 bg-gray-50 min-h-screen font-sans">
+      <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 mb-8">
+        All Vendor Ads
+      </h2>
 
       {ads.length === 0 ? (
         <p className="text-gray-600">No ads found.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ads.map((ad) => (
-            <div key={ad.id} className="bg-white rounded shadow overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ads.map((ad, index) => (
+            <motion.div
+              key={ad.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all"
+            >
               <img
                 src={ad.image}
                 alt={ad.title}
-                className="w-full h-40 object-cover"
+                className="w-full h-48 object-cover"
               />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">{ad.title}</h3>
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-800">{ad.title}</h3>
                 <p className="text-sm text-gray-500 mb-1">Vendor: {ad.vendor}</p>
-                <p className="text-sm text-gray-700 mb-2">Price: ${ad.price}</p>
+                <p className="text-sm text-gray-700 mb-3 font-medium">
+                  Price: ${ad.price}
+                </p>
 
-                {/* Future: Add admin actions here (ban, remove, etc.) */}
                 <button
-                  className="text-red-500 text-sm hover:underline"
-                  onClick={() => alert('Coming soon: delete ad')}
+                  onClick={() => handleRemove(ad.id)}
+                  className="text-sm text-red-500 hover:text-red-600 hover:underline transition"
                 >
                   Remove Ad
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}

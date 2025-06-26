@@ -25,13 +25,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Sidebar */}
+     
       <div
         className={`fixed top-0 left-0 z-50 h-full w-72 bg-white border-r border-orange-200 shadow-md flex flex-col justify-between p-6 font-sans transition-transform duration-300
           ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         `}
       >
-        {/* Header */}
+        
         <div className="flex items-center justify-between mb-10">
           <Link to="/">
             <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-purple-700 tracking-wide">
@@ -47,7 +47,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </button>
         </div>
 
-        {/* Main nav */}
+       
         <nav className="flex flex-col gap-3">
           {K.NAVLINKS.map(({ icon, text, path }) => (
             <NavLink
@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           ))}
         </nav>
 
-        {/* Settings & Logout */}
+       
         <div className="mt-8 border-t border-orange-100 pt-6 space-y-3">
           <NavLink
             to="/vendor/profile"
@@ -110,7 +110,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </button>
         </div>
 
-        {/* Footer */}
+       
         <div className="mt-6 text-xs text-center text-gray-400">
           &copy; 2025 CodeFeast
         </div>

@@ -6,7 +6,7 @@ const UserLayouts = ({ children }) => {
   return (
     <div className="flex flex-col">
       <Navbar />
-      <main className="pt-10">
+      <main className="pt-5">
         <Outlet />
         <Footer/>
       </main>
