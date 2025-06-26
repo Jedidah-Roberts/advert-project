@@ -123,7 +123,7 @@ const AdDetails = () => {
               </button>
             </Link>
 
-            <Link>
+            <Link to ="https://bouquet.africa/" target="_blank">
               <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 flex items-center gap-2">
                 <Calendar size={20} />
                 Get Ingredients
