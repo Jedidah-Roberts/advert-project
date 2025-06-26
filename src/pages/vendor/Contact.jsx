@@ -16,7 +16,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulated submission
+   
     console.log('Support Message:', form);
     setStatus('Your message has been sent. We’ll get back to you shortly.');
     setForm({ subject: '', message: '' });

@@ -9,7 +9,7 @@ const offers = [
     icon: <Gift size={48} className="text-orange-500 group-hover:animate-pulse" />,
   },
   {
-    title: "Buy 1 Recipe, Get 1 Free",
+    title: "10% Off Your Yearly Subscription",
     description: "Perfect for foodies who want to try something new every week.",
     icon: <UtensilsCrossed size={48} className="text-green-500 group-hover:animate-pulse" />,
   },

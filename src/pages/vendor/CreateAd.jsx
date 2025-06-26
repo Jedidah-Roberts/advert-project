@@ -50,7 +50,6 @@ export default function AddRecipeForm() {
         Share your unique flavors with the world.
       </p>
 
-      {/* IMAGE UPLOAD */}
       <Field label="Image" error={errors.image?.message}>
         <input
           type="file"
@@ -59,7 +58,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* RECIPE NAME */}
+     
       <Field label="Recipe Name" error={errors.recipeName?.message}>
         <input
           {...register("recipeName", { required: "Recipe name is required" })}
@@ -68,7 +67,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* DESCRIPTION */}
+      
       <Field label="Description" error={errors.description?.message}>
         <textarea
           {...register("description", { required: "Description is required" })}
@@ -78,7 +77,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* PRICE */}
+     
       <Field label="Price" error={errors.price?.message}>
         <input
           {...register("price", { required: "Price is required" })}
@@ -87,7 +86,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* COUNTRY */}
+     
       <Field label="Country of Origin" error={errors.countryOfOrigin?.message}>
         <input
           {...register("countryOfOrigin", { required: "Country is required" })}
@@ -96,7 +95,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* COURSE TYPE */}
+      
       <Field label="Course Type" error={errors.courseType?.message}>
         <select
           {...register("courseType", { required: "Course type is required" })}
@@ -110,7 +109,6 @@ export default function AddRecipeForm() {
         </select>
       </Field>
 
-      {/* TECHNIQUE */}
       <Field label="Cooking Technique" error={errors.cookingTechnique?.message}>
         <input
           {...register("cookingTechnique", {
@@ -121,7 +119,6 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* DIET */}
       <Field label="Special Diet">
         <input
           {...register("specialDiet")}
@@ -130,7 +127,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* INGREDIENTS */}
+      
       <Field label="Ingredients" error={errors.ingredient?.message}>
         <textarea
           {...register("ingredient", { required: "Ingredients are required" })}
@@ -140,7 +137,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* DIRECTIONS */}
+      
       <Field label="Directions" error={errors.directions?.message}>
         <textarea
           {...register("directions", { required: "Directions are required" })}
@@ -150,7 +147,7 @@ export default function AddRecipeForm() {
         />
       </Field>
 
-      {/* SUBMIT */}
+   
       <button
         type="submit"
         disabled={isSubmitting}
