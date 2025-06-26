@@ -1,18 +1,21 @@
 import { Link } from "react-router";
 import meet from "../../assets/meet.jpg";
 import { motion } from "framer-motion";
+import meet2 from "../../assets/meete.jpg";
+import meet3 from "../../assets/meet3.jpg";
+import meet4 from "../../assets/meet4.jpg";
 
 const team = [
   {
-    name: "Ebo Rice",
+    name: "Nana Ebow",
     role: "Back-end Developer",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: meet3,
     bio: "Back-end developer learning and growing with every build.",
   },
   {
-    name: "Juliet Esinam",
+    name: "Juliet Sakyibea",
     role: "Back-end Developer",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: meet2,
     bio: "Back-end developer learning and growing with every build.",
   },
   {
@@ -24,7 +27,7 @@ const team = [
   {
     name: "Jennifer Offin",
     role: "Front-end Developer",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: meet4,
     bio: "Crafts clean user interfaces with React and Tailwind CSS.",
   },
 ];
