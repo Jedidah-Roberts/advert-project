@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import meet from "../../assets/meet.jpg";
 import { motion } from "framer-motion";
 
@@ -27,7 +28,6 @@ const team = [
     bio: "Crafts clean user interfaces with React and Tailwind CSS.",
   },
 ];
-
 
 const container = {
   hidden: { opacity: 0 },
@@ -83,6 +83,11 @@ const MeetTheTeam = () => {
           </motion.div>
         ))}
       </motion.div>
+      <Link to="/about-us/how-it-works">
+        <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition duration-300">
+          How we work
+        </button>
+      </Link>
     </section>
   );
 };
