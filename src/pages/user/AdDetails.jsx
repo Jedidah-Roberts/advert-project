@@ -115,13 +115,21 @@ const AdDetails = () => {
             )}
           </div>
 
-          {/* CTA */}
-          <Link to="/book-chef">
-            <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 flex items-center gap-2">
-              <Calendar size={20} />
-              Book This Chef
-            </button>
-          </Link>
+          <div className="flex gap-6">
+            <Link to="/book-chef">
+              <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 flex items-center gap-2">
+                <Calendar size={20} />
+                Book This Chef
+              </button>
+            </Link>
+
+            <Link>
+              <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-semibold shadow-md transition duration-300 flex items-center gap-2">
+                <Calendar size={20} />
+                Get Ingredients
+              </button>
+            </Link>
+          </div>
 
           {/* About the Chef */}
           <div className="mt-10 border-t pt-6">
@@ -131,7 +139,6 @@ const AdDetails = () => {
             </h4>
           </div>
 
-          
           {recipe.directions && (
             <div className="mt-10 border-t pt-6">
               <h4 className="text-lg font-semibold mb-2 flex items-center gap-2 text-gray-800">

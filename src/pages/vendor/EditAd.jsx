@@ -9,6 +9,7 @@ export default function EditAd() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [recipe, setRecipe] = useState({});
+console.log(recipe.imageUrl);
 
   const {
     register,
@@ -16,6 +17,7 @@ export default function EditAd() {
     formState: { errors, isSubmitting },
   } = useForm({
     values: {
+      imageUrl: recipe.imageUrl,
       recipeName: recipe.recipeName,
       description: recipe.description,
       countryOfOrigin: recipe.countryOfOrigin,
@@ -23,7 +25,7 @@ export default function EditAd() {
       courseType: recipe.courseType,
       cookingTechnique: recipe.cookingTechnique,
       specialDiet: recipe.specialDiet,
-      ingredient: recipe.ingredient,
+      ingredients: recipe.ingredient,
       directions: recipe.directions,
     },
   });
@@ -32,6 +34,7 @@ export default function EditAd() {
     const fetchAd = async () => {
       try {
         const res = await apiFetchSingleAd(id);
+        console.log(res.data);
         setRecipe(res.data);
       } catch (err) {
         toast.error("Failed to load ad data");
@@ -44,8 +47,23 @@ export default function EditAd() {
   }, [id]);
 
   const submitForm = async (data) => {
+    const payload = new FormData();
+    payload.append("image", data.imageUrl[0]);
+    payload.append("recipeName", data.recipeName);
+    payload.append("description", data.description);
+    payload.append("price", data.price);
+    payload.append("countryOfOrigin", data.countryOfOrigin);
+    payload.append("courseType", data.courseType);
+    payload.append("cookingTechnique", data.cookingTechnique);
+    payload.append("specialDiet", data.specialDiet);
+    payload.append("ingredient", data.ingredient);
+    payload.append("directions", data.directions);
     try {
-      await apiEditAd(id, data);
+      
+  
+    await apiEditAd(id, 
+        payload
+    );
       toast.success("Ad updated successfully!");
       navigate("/dashboard/vendor-ads");
     } catch (error) {
@@ -63,10 +81,11 @@ export default function EditAd() {
       <h2 className="text-2xl font-bold text-center text-orange-600">
         Edit Your Ad
       </h2>
-      {/* <div>
+      <div>
         <label className="block mb-1 font-medium">imageUrl</label>
         <input
-          {...register("image", { required: "image is required" })}
+          type="file"
+          {...register("imageUrl", { required: "image is required" })}
           className={`w-full p-2 border rounded ${
             errors.image && "border-red-500"
           }`}
@@ -74,7 +93,7 @@ export default function EditAd() {
         {errors.image && (
           <p className="text-red-500 text-sm">{errors.image.message}</p>
         )}
-      </div> */}
+      </div>
       <div>
         <label className="block mb-1 font-medium">Recipe Name</label>
         <input
