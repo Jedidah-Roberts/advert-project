@@ -44,7 +44,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1 }}
         >
-          <Link to="/sign-up">
+          <Link to="/user-adverts">
             <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 px-8 py-3 rounded-full text-white font-semibold shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
               Get Started
             </button>

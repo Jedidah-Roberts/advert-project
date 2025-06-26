@@ -2,8 +2,13 @@ import { useState } from "react";
 import K from "../../../constants";
 import { Link, NavLink } from "react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 const Navbar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/login");
+  };
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
@@ -51,7 +56,7 @@ const Navbar = () => {
                     >
                       {child.text}
                     </Link>
-                    // this is conditional rendering using the logical and operators, this returns the second condition 
+                    // this is conditional rendering using the logical and operators, this returns the second condition
                   ))}
                 </div>
               )}
@@ -70,12 +75,13 @@ const Navbar = () => {
               Login
             </button>
           </Link>
-          <Link
-            to="/dashboard"
-            className="text-sm text-gray-500 underline hover:text-orange-600 transition duration-200"
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-red-500 text-base hover:bg-red-100 hover:shadow transition-all duration-200"
           >
-            Vendor Login
-          </Link>
+            <LogOut size={18} className="text-red-500" />
+            <span>Logout</span>
+          </button>
         </div>
 
         <button
@@ -124,12 +130,13 @@ const Navbar = () => {
             <Link to="/login" className="block text-orange-600 font-semibold">
               Login
             </Link>
-            <Link
-              to="/dashboard"
-              className="block text-sm text-gray-500 underline hover:text-orange-600"
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-red-500 text-base hover:bg-red-100 hover:shadow transition-all duration-200"
             >
-              Vendor Login
-            </Link>
+              <LogOut size={18} className="text-red-500" />
+              <span>Logout</span>
+            </button>
           </div>
         </div>
       )}

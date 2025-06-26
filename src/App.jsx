@@ -76,6 +76,10 @@ function App() {
         },
       ],
     },
+    {
+          path: "/vendor-settings",
+          element: <Settings />,
+        },
 
     // user layouts
     {
